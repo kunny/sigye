@@ -19,6 +19,7 @@ package com.androidhuman.sigye;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.wearable.view.WatchViewStub;
+import android.view.View;
 import android.widget.TextView;
 
 import com.androidhuman.sigye.util.ClockHandler;
@@ -63,6 +64,16 @@ public class SimpleDigitalActivity extends Activity implements ClockHandler.Cloc
     protected void onResume() {
         super.onResume();
         handler.listen();
+        if(tvBottom!=null){
+            tvBottom.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // Screen has dimmed, so let's hide the bottom area.
+        tvBottom.setVisibility(View.INVISIBLE);
     }
 
     @Override
